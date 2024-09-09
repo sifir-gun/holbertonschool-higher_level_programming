@@ -1,9 +1,9 @@
 def replace_in_list(my_list, idx, element):
-    # Si l'index est trop petit ou trop grand, 
-    # on ne change rien et on retourne la liste telle quelle
+    # Vérifie si l'indice est valide
     if idx < 0 or idx >= len(my_list):
-        return my_list
+        return my_list  # Retourne la liste originale si l'indice est invalide
     
-    # Sinon, on remplace l'élément à la position donnée par le nouvel élément
-    my_list[idx] = element
-    return my_list
+    # Copie la liste pour ne pas modifier l'originale
+    new_list = my_list.copy()
+    new_list[idx] = element  # Remplace l'élément à la position donnée
+    return new_list  # Retourne la nouvelle liste
