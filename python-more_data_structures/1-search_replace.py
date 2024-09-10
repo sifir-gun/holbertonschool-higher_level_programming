@@ -1,3 +1,4 @@
 def search_replace(my_list, search, replace):
-    # Return a new list where each element is replaced if it matches 'search'
-    return [replace if x == search else x for x in my_list]
+    # Create a new list with replaced elements if they match 'search'
+    new_list = [replace if x == search else x for x in my_list]
+    return new_list
