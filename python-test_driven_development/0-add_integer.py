@@ -9,15 +9,16 @@ def add_integer(a, b=98):
     Adds two integers a and b, where a and b must be integers or floats.
     Floats are cast to integers before addition.
     """
-    if not isinstance(a, (int, float)):
+    # Vérification des types et des valeurs NaN
+    if not isinstance(a, (int, float)) or a != a:
         raise TypeError("a must be an integer")
-    if not isinstance(b, (int, float)):
+    if not isinstance(b, (int, float)) or b != b:
         raise TypeError("b must be an integer")
 
-    # Vérification des valeurs spéciales inf et nan
-    if isinstance(a, float) and (a == float('inf') or a == float('nan')):
+    # Vérification des valeurs infinies
+    if isinstance(a, float) and a == float('inf'):
         raise TypeError("a must be an integer")
-    if isinstance(b, float) and (b == float('inf') or b == float('nan')):
+    if isinstance(b, float) and b == float('inf'):
         raise TypeError("b must be an integer")
 
     return int(a) + int(b)
