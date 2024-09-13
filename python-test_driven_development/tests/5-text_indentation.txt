@@ -4,20 +4,20 @@
 >>> text_indentation = importlib.import_module('5-text_indentation').text_indentation
 >>> text_indentation("Lorem ipsum dolor sit amet. Quonam modo? Non autem hoc: Fortasse id optimum.")
 Lorem ipsum dolor sit amet.
-
+<BLANKLINE>
 Quonam modo?
-
+<BLANKLINE>
 Non autem hoc:
-
+<BLANKLINE>
 Fortasse id optimum.
 >>> text_indentation("Lorem ipsum dolor sit amet?")
 Lorem ipsum dolor sit amet?
 >>> text_indentation("")
 >>> text_indentation("Hello: World. Are you there?")
 Hello:
-
+<BLANKLINE>
 World.
-
+<BLANKLINE>
 Are you there?
 >>> text_indentation(123)
 Traceback (most recent call last):
