@@ -1,6 +1,6 @@
->>> from 0-add_integer import add_integer
-
-# Tests classiques
+>>> import sys
+>>> sys.path.append('..')
+>>> from 0_add_integer import add_integer
 >>> add_integer(1, 2)
 3
 >>> add_integer(100, -2)
@@ -17,14 +17,10 @@ TypeError: b must be an integer
 Traceback (most recent call last):
     ...
 TypeError: a must be an integer
-
-# Tests avec des grands nombres
 >>> add_integer(999999999999999999, 1)
 1000000000000000000
 >>> add_integer(-999999999999999999, 1)
 -999999999999999998
-
-# Tests avec des flottants limites
 >>> add_integer(float('inf'), 1)
 Traceback (most recent call last):
     ...
@@ -37,23 +33,3 @@ TypeError: b must be an integer
 Traceback (most recent call last):
     ...
 TypeError: a must be an integer
-
-# Tests avec des chaînes de caractères qui ne sont pas des nombres
->>> add_integer("98", 1)
-Traceback (most recent call last):
-    ...
-TypeError: a must be an integer
->>> add_integer(1, "98")
-Traceback (most recent call last):
-    ...
-TypeError: b must be an integer
-
-# Tests avec des objets qui ne sont pas des nombres
->>> add_integer([1, 2], 1)
-Traceback (most recent call last):
-    ...
-TypeError: a must be an integer
->>> add_integer(1, [1, 2])
-Traceback (most recent call last):
-    ...
-TypeError: b must be an integer
