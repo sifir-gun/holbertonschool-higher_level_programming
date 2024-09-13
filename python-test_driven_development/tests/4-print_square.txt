@@ -38,4 +38,4 @@ size must be an integer
 ...     print_square()
 ... except TypeError as e:
 ...     print(e)
-print_square() missing​⬤
+print_square() missing 1 required positional argument: 'size'
