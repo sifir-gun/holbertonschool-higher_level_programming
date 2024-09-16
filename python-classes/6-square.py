@@ -15,7 +15,8 @@ class Square:
 
         Args:
             size (int): La taille du carré (doit être un entier >= 0).
-            position (tuple): La position du carré (doit être un tuple de 2 entiers >= 0).
+            position (tuple): La position du carré
+            (doit être un tuple de 2 entiers >= 0).
 
         Raises:
             TypeError: Si la taille ou la position ne sont pas valides.
@@ -68,7 +69,8 @@ class Square:
         Setter pour définir et valider la position du carré.
 
         Args:
-            value (tuple): Un tuple de 2 entiers positifs définissant la position.
+            value (tuple):
+            Un tuple de 2 entiers positifs définissant la position.
 
         Raises:
             TypeError: Si la position n'est pas un tuple de 2 entiers >= 0.
