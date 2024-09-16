@@ -7,4 +7,4 @@ class Square:
     """
     Une classe vide qui définit un carré.
     """
-    passgit add.
+    pass
