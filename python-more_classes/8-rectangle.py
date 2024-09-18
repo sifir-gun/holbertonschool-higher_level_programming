@@ -17,7 +17,7 @@ class Rectangle:
         """
         Initializes the rectangle with width and height, and increments
         the instance counter.
-        
+
         Args:
             width (int): The width of the rectangle.
             height (int): The height of the rectangle.
