@@ -10,6 +10,7 @@ class BaseGeometry:
     A class representing geometry with unimplemented area method and
     integer validation.
     """
+
     def area(self):
         """
         Raises an Exception indicating that the area method is not implemented.
@@ -28,7 +29,7 @@ class BaseGeometry:
             TypeError: If value is not an integer.
             ValueError: If value is less than or equal to 0.
         """
-        if not isinstance(value, int):
+        if not isinstance(value, int) or isinstance(value, bool):
             raise TypeError(f"{name} must be an integer")
         if value <= 0:
             raise ValueError(f"{name} must be greater than 0")
