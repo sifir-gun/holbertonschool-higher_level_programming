@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-Defines a class MyList that is a subclass of list with a method to print the list sorted.
+Defines a class MyList that is a subclass of
+list with a method to print the list sorted.
 """
 
 
