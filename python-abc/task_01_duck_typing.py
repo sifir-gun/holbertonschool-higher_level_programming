@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+"""
+This module defines an abstract class `Shape` and two concrete subclasses:
+`Circle` and `Rectangle`. Each subclass implements the abstract methods
+`area` and `perimeter` to calculate the respective geometric properties.
+"""
+
 from abc import ABC, abstractmethod
 import math
 
@@ -30,7 +36,7 @@ class Circle(Shape):
 
     def __init__(self, radius):
         if radius < 0:
-            raise ValueError("Radius cannot be negative")
+            raise ValueError("Radius must be non-negative")
         self.radius = radius
 
     def area(self):
