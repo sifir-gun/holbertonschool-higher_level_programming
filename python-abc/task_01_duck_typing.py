@@ -35,8 +35,6 @@ class Circle(Shape):
     """
 
     def __init__(self, radius):
-        if radius < 0:
-            raise ValueError("Radius must be non-negative")
         self.radius = radius
 
     def area(self):
@@ -48,8 +46,10 @@ class Circle(Shape):
     def perimeter(self):
         """
         Returns the perimeter of the circle.
+        If the radius is negative, it returns the perimeter as if the radius
+        were positive (absolute value).
         """
-        return 2 * math.pi * self.radius
+        return 2 * math.pi * abs(self.radius)
 
 
 class Rectangle(Shape):
