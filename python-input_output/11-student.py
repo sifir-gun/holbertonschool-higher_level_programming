@@ -40,8 +40,10 @@ class Student:
         Returns:
             dict: A dictionary representation of the student.
         """
-        if isinstance(attrs, list) and all(isinstance(attr, str) for attr in attrs):
-            return {key: getattr(self, key) for key in attrs if hasattr(self, key)}
+        if isinstance(attrs, list) and all(
+                isinstance(attr, str) for attr in attrs):
+            return {key: getattr(self, key) for key in attrs if hasattr(
+                self, key)}
         else:
             return self.__dict__
 
@@ -51,7 +53,8 @@ class Student:
         from the given dictionary.
 
         Args:
-            json (dict): A dictionary containing new values for the student's attributes.
+            json (dict): A dictionary containing
+            new values for the student's attributes.
         """
         for key, value in json.items():
             if hasattr(self, key):
