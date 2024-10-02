@@ -40,9 +40,11 @@ class Student:
         Returns:
             dict: A dictionary representation of the student.
         """
-        if isinstance(attrs, list) and all(isinstance(attr, str) for attr in attrs):
+        if isinstance(attrs, list) and all(isinstance(
+                attr, str) for attr in attrs):
             # Create a dictionary with only the specified attributes
-            return {key: getattr(self, key) for key in attrs if hasattr(self, key)}
+            return {key: getattr(self, key) for key in attrs if hasattr(
+                self, key)}
         else:
             # Return the full dictionary of all attributes
             return self.__dict__
