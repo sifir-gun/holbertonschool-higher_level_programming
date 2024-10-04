@@ -39,10 +39,14 @@ class CustomObject:
     def display(self):
         """
         Affiche les attributs de l'objet de manière formatée.
+        Format :
+        Name: John
+        Age: 25
+        Is Student: True
         """
-        print(f"Nom : {self.name}")
-        print(f"Âge : {self.age}")
-        print(f"Est étudiant : {self.is_student}")
+        print(f"Name: {self.name}")
+        print(f"Age: {self.age}")
+        print(f"Is Student: {self.is_student}")
 
     def serialize(self, filename):
         """
@@ -56,9 +60,9 @@ class CustomObject:
         try:
             with open(filename, 'wb') as file:
                 pickle.dump(self, file)
-            print(f"Objet sérialisé et sauvegardé dans {filename}.")
-        except (OSError, pickle.PicklingError) as e:
-            print(f"Échec de la sérialisation de l'objet : {e}")
+            print(f"Object serialized and saved to {filename}.")
+        except Exception as e:
+            print(f"Failed to serialize object: {e}")
 
     @classmethod
     def deserialize(cls, filename):
@@ -78,5 +82,5 @@ class CustomObject:
                 obj = pickle.load(file)
                 return obj
         except (FileNotFoundError, pickle.UnpicklingError) as e:
-            print(f"Échec de la désérialisation de l'objet : {e}")
+            print(f"Failed to deserialize object: {e}")
             return None
