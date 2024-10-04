@@ -1,16 +1,17 @@
 #!/usr/bin/python3
 """
-Ce script contient une fonction qui lit le contenu d'un fichier et l'affiche
-sur la sortie standard.
+This script contains a function that reads the content of a file and prints it
+to the standard output.
 """
+
 
 def read_file(filename=""):
     """
-    Lit le contenu d'un fichier et l'affiche sur la sortie standard.
+    Reads the content of a file and prints it to the standard output.
 
     Args:
-        filename (str, optional): Le chemin du fichier à lire.
-            Par défaut, une chaîne vide.
+        filename (str, optional): The path of the file to read.
+            Defaults to an empty string.
 
     Returns:
         None
