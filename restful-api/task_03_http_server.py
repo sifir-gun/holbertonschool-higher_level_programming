@@ -1,19 +1,20 @@
 """
-This script sets up a basic HTTP server using Python's
-built-in http.server module.
+This script sets up a basic HTTP server using Python's http.server module.
 It handles various HTTP GET requests and serves plain text or JSON responses.
 
 Modules:
-    json: Provides functionality for working with JSON data.
-    http.server: Provides classes for implementing HTTP servers.
+    - json: Provides functionality for working with JSON data.
+    - http.server: Provides classes for implementing HTTP servers.
 
 Classes:
     SimpleHTTPRequestHandler: Custom handler for processing HTTP GET requests.
         - Handles specific endpoints and returns responses based on the request
+        path.
 
 Functions:
     run: Initializes and starts the HTTP server.
 """
+
 import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
@@ -59,16 +60,16 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         self.wfile.write(json.dumps(data).encode())
 
 
-def run(server_class=HTTPServer,
-        handler_class=SimpleHTTPRequestHandler, port=8000):
+def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler,
+        port=8000):
     """
     Set up and run the HTTP server.
 
     Args:
-        server_class:
-        The class to use for the HTTP server (default: HTTPServer).
-        handler_class:
-        The request handler class (default: SimpleHTTPRequestHandler).
+        server_class: The class to use for the HTTP server
+        (default: HTTPServer).
+        handler_class: The request handler class
+        (default: SimpleHTTPRequestHandler).
         port: The port on which the server will listen (default: 8000).
     """
     server_address = ('', port)

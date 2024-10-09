@@ -54,7 +54,7 @@ Client            Web Server           API Server           Database
 
 This project contains the following tasks:
 
-### 1. Basics of HTTP/HTTPS
+### 0. Basics of HTTP/HTTPS
 
 **Objective**: Understand the core principles of HTTP and HTTPS, including how data is transferred and the key differences between secure and non-secure communication.
 
@@ -65,7 +65,7 @@ This project contains the following tasks:
 **Expected Output**:  
 Lists of common HTTP methods and status codes with descriptions and use cases.
 
-### 2. Consume data from an API using Command Line (curl)
+### 1. Consume data from an API using Command Line (curl)
 
 **Objective**: Learn how to interact with APIs using `curl`, a command-line tool for transferring data.
 
@@ -76,7 +76,7 @@ Lists of common HTTP methods and status codes with descriptions and use cases.
 **Expected Output**:  
 Successfully fetch and manipulate data from an API using `curl`. Example API: JSONPlaceholder.
 
-### 3. Consuming and processing data from an API using Python
+### 2. Consuming and processing data from an API using Python
 
 **Objective**: Use Python's `requests` library to fetch and process API data.
 
@@ -87,7 +87,7 @@ Successfully fetch and manipulate data from an API using `curl`. Example API: JS
 **Expected Output**:  
 A Python script that fetches API data and stores it in a CSV file.
 
-### 4. Develop a Simple API using Python's `http.server` Module
+### 3. Develop a Simple API using Python's `http.server` Module
 
 **Objective**: Use Python's built-in `http.server` module to build a basic API.
 
@@ -98,7 +98,7 @@ A Python script that fetches API data and stores it in a CSV file.
 **Expected Output**:  
 A simple web API that returns static JSON data and handles 404 errors for undefined endpoints.
 
-### 5. Develop a Simple API using Flask
+### 4. Develop a Simple API using Flask
 
 **Objective**: Use the Flask framework to create a more advanced API.
 
@@ -110,7 +110,7 @@ A simple web API that returns static JSON data and handles 404 errors for undefi
 **Expected Output**:  
 A Flask API that serves user data and handles both GET and POST requests with proper routing and error handling.
 
-### 6. API Security and Authentication Techniques
+### 5. API Security and Authentication Techniques
 
 **Objective**: Learn how to secure APIs using basic and token-based authentication (JWT).
 
