@@ -6,6 +6,11 @@ It handles various HTTP GET requests and serves plain text or JSON responses.
 
 import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from urllib.parse import urlparse
+
+# Constants for Content Types
+CONTENT_TYPE_JSON = 'application/json'
+CONTENT_TYPE_TEXT = 'text/plain'
 
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -13,27 +18,29 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         """Handle GET requests based on the request path."""
-        if self.path == "/":
+        parsed_path = urlparse(self.path)
+        path = parsed_path.path
+
+        if path == "/":
             self._send_plain_text_response(200, "Hello, this is a simple API!")
-        elif self.path == "/data":
+        elif path == "/data":
             data = {"name": "John", "age": 30, "city": "New York"}
             self._send_json_response(200, data)
-        elif self.path == "/status":
+        elif path == "/status":
             self._send_plain_text_response(200, "OK")
-        elif self.path == "/info":
+        elif path == "/info":
             data = {"version": "1.0", "description":
                     "A simple API built with http.server"}
             self._send_json_response(200, data)
         else:
-            self.send_error(404, "Endpoint not found")
+            self._send_error_response(404, "404 Not Found: Endpoint not found")
 
     def _send_plain_text_response(self, status_code, message):
         """
         Send a plain text response with the provided status code and message.
         """
         self.send_response(status_code)
-        self.send_header("Content-type", "text/plain")
-        self.send_header("Content-Length", str(len(message.encode())))
+        self.send_header("Content-type", CONTENT_TYPE_TEXT)
         self.end_headers()
         self.wfile.write(message.encode())
 
@@ -41,10 +48,16 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         """Send a JSON response with the provided status code and data."""
         json_data = json.dumps(data)
         self.send_response(status_code)
-        self.send_header("Content-type", "application/json")
-        self.send_header("Content-Length", str(len(json_data.encode())))
+        self.send_header("Content-type", CONTENT_TYPE_JSON)
         self.end_headers()
         self.wfile.write(json_data.encode())
+
+    def _send_error_response(self, status_code, message):
+        """Send an error response with the provided status code and message."""
+        self.send_response(status_code)
+        self.send_header("Content-type", CONTENT_TYPE_TEXT)
+        self.end_headers()
+        self.wfile.write(message.encode())
 
 
 def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler,
