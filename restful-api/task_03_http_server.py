@@ -33,7 +33,8 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                     "A simple API built with http.server"}
             self._send_json_response(200, data)
         else:
-            self._send_error_response(404, "404 Not Found: Endpoint not found")
+            # Use send_error to handle undefined endpoints
+            self.send_error(404, "Endpoint not found")
 
     def _send_plain_text_response(self, status_code, message):
         """
@@ -41,6 +42,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         """
         self.send_response(status_code)
         self.send_header("Content-type", CONTENT_TYPE_TEXT)
+        self.send_header("Content-Length", str(len(message.encode())))
         self.end_headers()
         self.wfile.write(message.encode())
 
@@ -49,15 +51,18 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         json_data = json.dumps(data)
         self.send_response(status_code)
         self.send_header("Content-type", CONTENT_TYPE_JSON)
+        self.send_header("Content-Length", str(len(json_data.encode())))
         self.end_headers()
         self.wfile.write(json_data.encode())
 
-    def _send_error_response(self, status_code, message):
-        """Send an error response with the provided status code and message."""
-        self.send_response(status_code)
-        self.send_header("Content-type", CONTENT_TYPE_TEXT)
+    def send_error(self, code, message=None, explain=None):
+        """Override send_error to customize the error response."""
+        self.send_response(code)
+        self.send_header("Content-Type", CONTENT_TYPE_TEXT)
+        error_message = message if message else "Endpoint not found"
+        self.send_header("Content-Length", str(len(error_message.encode())))
         self.end_headers()
-        self.wfile.write(message.encode())
+        self.wfile.write(error_message.encode())
 
 
 def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler,
