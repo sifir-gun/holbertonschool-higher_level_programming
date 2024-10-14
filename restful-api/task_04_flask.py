@@ -3,21 +3,21 @@
 This script sets up a simple Flask web application to demonstrate API routing,
 JSON data handling, and basic request-response cycles.
 
-It provides endpoints to:
+It provides endpoints for:
 
-- Display a welcome message at the root URL (`/`).
-- Return a list of usernames at `/data`.
-- Check the API status at `/status`.
-- Retrieve user information at `/users/<username>`.
-- Add a new user via a POST request to `/add_user`.
+- Displaying a welcome message at the root URL (`/`).
+- Returning a list of usernames at `/data`.
+- Checking the API status at `/status`.
+- Retrieving user information at `/users/<username>`.
+- Adding a new user via a POST request to `/add_user`.
 
-Modules:
+Modules used:
 
-- Flask: A lightweight web framework for creating web applications and APIs.
+- Flask: A micro web framework for building web applications and APIs.
 - jsonify: A utility function to convert Python data structures to JSON format.
-- request: Handles incoming requests, allowing access to headers and data.
+- request: Handles incoming requests, providing access to headers and data.
 - Response: Used to customize response objects,
-including headers and mimetypes.
+including headers and MIME types.
 """
 
 
@@ -45,7 +45,7 @@ users = {
 @app.route('/')
 def home():
     """
-    Handle the root endpoint and return a welcome message.
+    Handles the root endpoint and returns a welcome message.
 
     Returns:
         Response: A plain text welcome message.
@@ -56,7 +56,7 @@ def home():
 @app.route('/data')
 def get_users():
     """
-    Return a JSON response with a list of all usernames.
+    Returns a JSON response with a list of all usernames.
 
     Returns:
         Response: A JSON array of usernames.
@@ -67,7 +67,7 @@ def get_users():
 @app.route('/status')
 def status():
     """
-    Return the status of the API.
+    Returns the API status.
 
     Returns:
         Response: A plain text message indicating the API status.
@@ -78,14 +78,14 @@ def status():
 @app.route('/users/<username>')
 def get_user(username):
     """
-    Return the full user object corresponding to the provided username.
+    Returns the complete user object corresponding to the provided username.
 
     Args:
         username (str): The username to retrieve.
 
     Returns:
-        Response: A JSON object of user details if found,
-                  else a JSON error message with a 404 status code.
+        Response: A JSON object of the user's details if found,
+                  otherwise a JSON error message with a 404 status code.
     """
     user = users.get(username)
     if user:
@@ -97,7 +97,7 @@ def get_user(username):
 @app.route('/add_user', methods=['POST'])
 def add_user():
     """
-    Handle POST requests to add a new user.
+    Handles POST requests to add a new user.
 
     Expects JSON data containing 'username', 'name', 'age', and 'city'.
 
@@ -122,5 +122,20 @@ def add_user():
     })
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    """
+    Handles undefined endpoints and returns a custom error message.
+
+    Args:
+        e (Exception): The raised exception.
+
+    Returns:
+        Response: A JSON error message with a 404 status code.
+    """
+    return jsonify({"error": str(e)}), 404
+
+
+# Run the application
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run()
