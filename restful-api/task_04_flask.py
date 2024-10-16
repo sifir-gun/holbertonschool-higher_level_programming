@@ -94,7 +94,8 @@ def add_user():
 
     Returns:
         Response: A confirmation message with the added user's data,
-                  or an error message if 'username' is missing or already exist
+                  or an error message if 'username' is missing or a duplicate
+                  with the same details exists.
     """
     data = request.get_json()
 
@@ -102,9 +103,20 @@ def add_user():
         return jsonify({"error": "Username is required"}), 400
 
     username = data['username']
-    if username in users:
-        return jsonify({"error": "Username already exists"}), 409
 
+    # Check if the same username with the same details exists
+    existing_user = users.get(username)
+    if existing_user and existing_user == {
+        "username": username,
+        "name": data.get("name"),
+        "age": data.get("age"),
+        "city": data.get("city")
+    }:
+        return jsonify({
+            "error": "User with identical details already exists"
+        }), 400
+
+    # If the username exists but with different details, allow it
     users[username] = {
         "username": username,
         "name": data.get("name"),
