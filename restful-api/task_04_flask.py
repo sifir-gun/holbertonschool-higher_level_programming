@@ -94,6 +94,10 @@ def get_user(username):
         return jsonify({"error": "User not found"}), 404
 
 
+# In-memory dictionary to store users (starting empty)
+users = {}
+
+
 @app.route('/add_user', methods=['POST'])
 def add_user():
     """
