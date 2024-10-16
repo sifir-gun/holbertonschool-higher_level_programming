@@ -20,26 +20,17 @@ Modules used:
 including headers and MIME types.
 """
 
+# Standard library imports
+from typing import Dict, Any
 
+# Third-party imports
 from flask import Flask, jsonify, request, Response
 
 app = Flask(__name__)
 
-# In-memory dictionary to store users
-users = {
-    "jane": {
-        "username": "jane",
-        "name": "Jane",
-        "age": 28,
-        "city": "Los Angeles"
-    },
-    "john": {
-        "username": "john",
-        "name": "John",
-        "age": 30,
-        "city": "New York"
-    }
-}
+
+# In-memory dictionary to store users (starting empty)
+users: Dict[str, Dict[str, Any]] = {}
 
 
 @app.route('/')
@@ -94,10 +85,6 @@ def get_user(username):
         return jsonify({"error": "User not found"}), 404
 
 
-# In-memory dictionary to store users (starting empty)
-users = {}
-
-
 @app.route('/add_user', methods=['POST'])
 def add_user():
     """
@@ -107,7 +94,7 @@ def add_user():
 
     Returns:
         Response: A confirmation message with the added user's data,
-                  or an error message if 'username' is missing.
+                  or an error message if 'username' is missing or already exist
     """
     data = request.get_json()
 
