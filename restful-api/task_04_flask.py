@@ -106,12 +106,13 @@ def add_user():
                   or an error message if 'username' is missing.
     """
     data = request.get_json()
+
     if not data or 'username' not in data:
         return jsonify({"error": "Username is required"}), 400
 
     username = data['username']
     if username in users:
-        return jsonify({"error": "Username already exists"}), 400
+        return jsonify({"error": "Username already exists"}), 409
 
     users[username] = {
         "username": username,
@@ -122,7 +123,7 @@ def add_user():
     return jsonify({
         "message": "User added",
         "user": users[username]
-    })
+    }), 201  # Use 201 Created for successful POST requests
 
 
 @app.errorhandler(404)
