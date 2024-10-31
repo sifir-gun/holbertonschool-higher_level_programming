@@ -16,12 +16,10 @@ if __name__ == "__main__":
     cursor = db.cursor()
     
     # Requête pour sélectionner les états commençant exactement par 'N'
-    cursor.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id ASC")
+    cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
     
     # Affichage des résultats
     rows = cursor.fetchall()
-    for row in rows:
-        print(row)
 
     # Fermeture du curseur et de la connexion
     cursor.close()
