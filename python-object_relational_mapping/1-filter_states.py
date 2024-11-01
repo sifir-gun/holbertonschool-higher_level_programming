@@ -5,10 +5,10 @@ Lists all states with a name starting with 'N' from the database hbtn_0e_0_usa
 Usage: ./1-filter_states.py <mysql_username> <mysql_password> <database_name>
 """
 
-import sys
-import MySQLdb
-
 if __name__ == "__main__":
+    import sys
+    import MySQLdb
+
     # Connect to the database using provided arguments
     db = MySQLdb.connect(host="localhost",
                          port=3306,
@@ -20,8 +20,7 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     # Execute the SQL query to retrieve states starting with 'N'
-    query = (
-        "SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id ASC")
+    query = "SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id ASC"
     cursor.execute(query)
     rows = cursor.fetchall()
 
