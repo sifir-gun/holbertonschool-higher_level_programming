@@ -15,4 +15,3 @@ fetch(apiUrl)
     // Gérer les erreurs éventuelles
     console.error('Erreur lors de la récupération des données :', error);
   });
-  
